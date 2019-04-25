@@ -21,9 +21,9 @@ namespace TransAction.API.Controllers
             _transActionRepo = transActionRepo;
             var userId = httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.GivenName).Value; // nameIdentifeir gives the Id and the .Name gives the username
             var userEmail = httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Email).Value;
-            var checkUser = _transActionRepo.UserExists(userId,userEmail);
-         //   if (!checkUser) ExitController();
-            
+            var checkUser = _transActionRepo.UserExists(userId, userEmail);
+            //   if (!checkUser) ExitController();
+
         }
 
         [HttpGet()]
@@ -82,9 +82,9 @@ namespace TransAction.API.Controllers
             }
 
             var newEvent = Mapper.Map<TraEvent>(createEvent);
-          
 
-            _transActionRepo.CreateEvent(newEvent);          
+
+            _transActionRepo.CreateEvent(newEvent);
 
             if (!_transActionRepo.Save())
             {
@@ -108,7 +108,7 @@ namespace TransAction.API.Controllers
             {
                 return BadRequest(ModelState);
             }
-            Mapper.Map(updateEvent,eventEntity);
+            Mapper.Map(updateEvent, eventEntity);
 
 
             if (!_transActionRepo.Save())
